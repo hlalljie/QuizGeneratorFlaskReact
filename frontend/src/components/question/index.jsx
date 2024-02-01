@@ -6,9 +6,10 @@ function Question(props) {
 
 
   return (
-    <>
+    <div className='question'>
         <fieldset>
             <legend>{props.qNum + ". " + props.qData.question}</legend>
+            <hr/>
             <div>
                 <input 
                     type="radio"
@@ -54,7 +55,7 @@ function Question(props) {
                 </label>
             </div>
         </fieldset>
-    </>
+    </div>
   )
 }
 

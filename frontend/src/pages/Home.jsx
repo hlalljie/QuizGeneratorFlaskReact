@@ -43,9 +43,11 @@ function Home() {
         )
     }
     return (
-        <div>
-            <input required="required" placeholder='What kind of quiz would you like to generate?' value={userInput} onChange={e => setInput(e.target.value)} />
-            <button type="submit" onClick={handleClick} >Search</button>
+        <div className='home'>
+            <div className='inputContainer'>
+                <input required="required" placeholder='What kind of quiz would you like to generate?' value={userInput} onChange={e => setInput(e.target.value)} />
+                <button type="submit" onClick={handleClick} >Generate Quiz</button>
+            </div>
             {loading ? loadingIndicator(): null }
             {checkResponse(data)}
         </div>
