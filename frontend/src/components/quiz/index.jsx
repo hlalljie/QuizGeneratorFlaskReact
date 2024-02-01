@@ -10,12 +10,12 @@ function Quiz(props) {
     qComps.push(<Question qNum={i+1} qData={props.data.question_list[i]}/>)
   }
   return (
-    <>
+    <div className='quiz'>
       <h2>{props.data.title}</h2>
       <form>
         {qComps}
       </form>
-    </>
+    </div>
   )
 }
 

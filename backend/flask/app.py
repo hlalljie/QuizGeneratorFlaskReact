@@ -40,8 +40,8 @@ CORS(app)
 def get_quiz():
     response = request.get_json()['user_input']
     print("Recieved Request:", response)
+
     #return convertToDictionary(example_response)
-    #return generate_quiz(example_response)
 
     return generate_quiz(response) # get response from ai
 

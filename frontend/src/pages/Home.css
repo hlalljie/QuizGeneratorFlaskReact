@@ -1,0 +1,56 @@
+.home{
+    padding: 40px;
+    width: 80%;
+}
+.inputContainer{
+    height: fit-content;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+}
+.inputContainer input{
+    height: 35px;
+    flex-grow: 2;
+    padding: 5px 10px;
+}
+.inputContainer button{
+    background-color: #00000089;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+.quiz{
+    background-color: #00000057;
+    padding: 20px 60px;
+    max-width: 100%;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+.quiz h2{
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.question{
+    background-color: #0000002f;
+    padding: 20px 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.question hr{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-left: none;
+    border-color: rgba(255, 255, 255, 0.589);
+}
+legend{
+    font-weight: 600;
+}
+label{
+    margin-left: 10px;
+}
+fieldset{
+    border: none;
+}
+
