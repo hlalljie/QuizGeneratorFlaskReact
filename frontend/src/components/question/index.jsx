@@ -1,64 +1,44 @@
-import { useState } from 'react'
-import './index.css'
+import { useState } from "react";
+import "./index.css";
 
 function Question(props) {
   //const [count, setCount] = useState(0)
 
+  let choices = 4;
+  let option_letters = ["a", "b", "c", "d"];
+  let options = [];
+  for (let i = 0; i < choices; i++) {
+    options.push(
+      <div>
+        <input
+          type="radio"
+          id={"choice" + option_letters[i].toUpperCase()}
+          name={"q" + props.qNum}
+          value={option_letters[i]}
+        />
+        <label htmlFor={"q" + props.qNum + "choice" + option_letters[i].toUpperCase()}>
+          {option_letters[i].toUpperCase() + ". " + props.qData[option_letters[i]]}
+        </label>
+      </div>
+    );
+  }
 
   return (
-    <div className='question'>
-        <fieldset>
-            <legend>{props.qNum + ". " + props.qData.question}</legend>
-            <hr/>
-            <div>
-                <input 
-                    type="radio"
-                    id="choiceA" 
-                    name={"q" + props.qNum} 
-                    value={"q" + props.qNum + "choiceA"} 
-                />
-                <label htmlFor={"q" + props.qNum + "choiceA"}>
-                        {props.qData.a}
-                </label>
-            </div>
-            <div>
-                <input 
-                    type="radio"
-                    id="choiceB" 
-                    name={"q" + props.qNum} 
-                    value={"q" + props.qNum + "choiceB"} 
-                />
-                <label htmlFor={"q" + props.qNum + "choiceB"}>
-                        {props.qData.b}
-                </label>
-            </div>
-            <div>
-                <input 
-                    type="radio"
-                    id="choiceC" 
-                    name={"q" + props.qNum} 
-                    value={"q" + props.qNum + "choiceC"} 
-                />
-                <label htmlFor={"q" + props.qNum + "choiceC"}>
-                        {props.qData.c}
-                </label>
-            </div>
-            <div>
-                <input 
-                    type="radio"
-                    id="choiceD" 
-                    name={"q" + props.qNum} 
-                    value={"q" + props.qNum + "choiceD"} 
-                />
-                <label htmlFor={"q" + props.qNum + "choiceD"}>
-                        {props.qData.d}
-                </label>
-            </div>
-        </fieldset>
-        <hr/>
-        {props.showAnswers ? <p className='Answer'>Answer {props.qData.answer}</p>: null}
+    <div className="question">
+      <fieldset>
+        <legend>{props.qNum + ". " + props.qData.question}</legend>
+        <hr />
+        {options}
+      </fieldset>
+
+      {props.showAnswers ? (
+        <>
+          <hr />
+          <p className="Answer">Answer {props.qData.answer}</p>
+        </>
+      ) : null}
     </div>
-  )
+  );
 }
 
-export default Question
+export default Question;
