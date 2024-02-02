@@ -9,7 +9,7 @@ function Home() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const handleClick = async () => {
+    const handlePromptSubmit = async () => {
         try {
             setLoading(true);
             let requestOptions = {
@@ -46,7 +46,7 @@ function Home() {
         <div className='home'>
             <div className='inputContainer'>
                 <input required="required" placeholder='What kind of quiz would you like to generate?' value={userInput} onChange={e => setInput(e.target.value)} />
-                <button type="submit" onClick={handleClick} >Generate Quiz</button>
+                <button type="submit" onClick={handlePromptSubmit} >Generate Quiz</button>
             </div>
             {loading ? loadingIndicator(): null }
             {checkResponse(data)}

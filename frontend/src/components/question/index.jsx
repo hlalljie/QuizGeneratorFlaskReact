@@ -55,6 +55,8 @@ function Question(props) {
                 </label>
             </div>
         </fieldset>
+        <hr/>
+        {props.showAnswers ? <p className='Answer'>Answer {props.qData.answer}</p>: null}
     </div>
   )
 }
