@@ -27,7 +27,7 @@ function Home() {
     }
     function checkResponse(data) {
         if (data) {
-            console.log(data)
+            //console.log(data)
             return <Quiz data={data}/>;
         } else {
             return null;

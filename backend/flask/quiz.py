@@ -64,12 +64,16 @@ def clean_response(response) -> str:
     #print("lines: ")
     #print(lines)
     #print("end lines")
+    for i in range (len(lines)):
+        lines[i] = lines[i].strip("'")
+
     # search backwards for the last response containing letters
     for i in range(len(lines)-1, -1, -1):
-        lines[i].strip("'")
         # if colons in string do not delete up until line
         if ":" in lines[i]:
             return '\n'.join(lines[:i+1])
+        
+    
             
 # Converts (yaml) String to dictionary
 def convertToDictionary(response) -> dict:
