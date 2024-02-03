@@ -11,6 +11,19 @@ function Quiz(props) {
     return () => setShowAnswers(true)
   }
 
+  function score(){
+    let score = 0
+    for (let i = 0; i < values.length; i++){
+      if (values[i] === props.data.question_list[i].answer){
+        score++;
+      }
+    }
+    let percent = (score / props.data.question_list.length * 100).toFixed(2)
+    return (
+      <h3>Score: {percent}% ({score} / {props.data.question_list.length})</h3>
+    )
+  }
+
   const qComps = []
   for (let i = 0; i < props.data.question_list.length; i++){
     qComps.push(<Question qNum={i+1} qData={props.data.question_list[i]} showAnswers={showAnswers} values={values} setValues={setValues}/>)
@@ -20,7 +33,9 @@ function Quiz(props) {
 
   return (
     <div className='quiz'>
+      
       <h2>{props.data.title}</h2>
+      {showAnswers ? score() : null}
       <form>
         {qComps}
       </form>

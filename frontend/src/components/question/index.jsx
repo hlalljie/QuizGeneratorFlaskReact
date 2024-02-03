@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./index.css";
 
 function Question(props) {
-  //const [count, setCount] = useState(0)
+  const [correct, setCorrect] = useState(null)
 
   function changeValue(choice){
     const newValues = props.values.map((value, index) => {
@@ -27,7 +27,7 @@ function Question(props) {
           name={"q" + props.qNum}
           value={option_letters[i]}
           checked={option_letters[i] === props.values[props.qNum - 1]}
-          onChange={() => changeValue(option_letters[i])}
+          onChange={() => props.showAnswers ? null : changeValue(option_letters[i])}
         />
         <label htmlFor={"q" + props.qNum + "choice" + option_letters[i].toUpperCase()}>
           {option_letters[i].toUpperCase() + ". " + props.qData[option_letters[i]]}
@@ -42,6 +42,11 @@ function Question(props) {
         let message = "Correct!"
         if (props.qData.answer != props.values[props.qNum-1]){
             message = "Incorrect, the correct answer is: " + props.qData.answer.toUpperCase()
+            if (correct === null || correct )
+            setCorrect(false)
+        }
+        else if (correct === null || !correct){
+            setCorrect(true)
         }
         return (
                 <>
@@ -54,7 +59,7 @@ function Question(props) {
   }
 
   return (
-    <div className="question">
+    <div className={`question ${correct === null ? "" : correct ? "correct" : "incorrect"}`}>
       <fieldset>
         <legend>{props.qNum + ". " + props.qData.question}</legend>
         <hr />

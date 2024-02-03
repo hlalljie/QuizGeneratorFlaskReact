@@ -54,3 +54,11 @@ fieldset{
     border: none;
 }
 
+.correct{
+    box-shadow: rgba(0, 226, 11, 0.335) 0px 0px 30px;
+}
+.incorrect{
+    box-shadow: rgba(255, 0, 0, 0.356) 0px 0px 30px;
+}
+
+
