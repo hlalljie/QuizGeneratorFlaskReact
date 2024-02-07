@@ -7,13 +7,24 @@ load_dotenv()
 
 #print(os.environ['REPLICATE_TOKEN'])
 
-llama_settings = {
+def generate_quiz(user_input:str, question_num:int) -> dict:
+    prompt_output = prompt_quiz(user_input, question_num)
+    # print("Prompt Generated\n")
+    # print(prompt_output)
+    # print(type(prompt_output))
+    # print("\nPrompt Complete")
+    return convertToDictionary(prompt_output)
+
+
+# Prompts a chatbot to generate a quiz based on user's input
+def prompt_quiz(user_input:str, question_num:int) -> str:
+    llama_settings = {
   'temperature': .1,
   'top_p': .9,
   'max_length': 10000,
   'model': 'a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5',
   'system_message': 
-"""You are a helpful quiz question creation assistant. When prompted you will generate a 3 question multiple choice quiz on the topic provided in yaml, formatted like the below yaml. The example includes single quotes '' to indicate words that must be used exactly and brackets [] to indicate where to change values for your generated values. Do not include the brackets[] or single quotes'' in your response and follow the format exactly and with correct spacing, tabbing and punctuation. Question list and title should be the same tab amount\n
+"""You are a helpful quiz question creation assistant. When prompted you will generate an exactly """ + str(question_num) + """ question multiple choice quiz on the topic provided in yaml, formatted like the below yaml. The example includes single quotes '' to indicate words that must be used exactly and brackets [] to indicate where to change values for your generated values. Do not include the brackets[] or single quotes'' in your response and follow the format exactly and with correct spacing, tabbing and punctuation. Question list and title should be the same tab amount\n
 'title:'[quiz_title]
 'question_list:'
    '- question:' [question1]
@@ -26,21 +37,8 @@ llama_settings = {
     'pre_prompt': "Assistant: What kind of quiz would you like me to generate? \n\n",
     'output_prefix': 'Assistant: Here is your quiz in YAML format.\n',
     'example_prompt': 'A quiz about strings in computer science'
-}
-
-def generate_quiz(user_input:str = llama_settings["example_prompt"]) -> dict:
-    prompt_output = prompt_quiz(user_input)
-    # print("Prompt Generated\n")
-    # print(prompt_output)
-    # print(type(prompt_output))
-    # print("\nPrompt Complete")
-    return convertToDictionary(prompt_output)
-
-
-# Prompts a chatbot to generate a quiz based on user's input
-def prompt_quiz(user_input:str =llama_settings["example_prompt"]) -> str:
+    }
     #print("Quiz generating...")
-    global llama_settings
     input_prompt = "prompt: " + f"{llama_settings['system_message']} {llama_settings['pre_prompt']} User: {user_input} \n\n {llama_settings['output_prefix']}\n"
     #print (input_prompt)
     output = replicate.run(

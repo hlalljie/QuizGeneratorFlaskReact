@@ -38,12 +38,14 @@ CORS(app)
 
 @app.route('/api/quiz', methods = ['POST'])
 def get_quiz():
-    response = request.get_json()['user_input']
+    response = request.get_json()
+    prompt = response["user_input"]
+    question_num = response["question_num"]
     print("Recieved Request:", response)
 
-    return convertToDictionary(example_response)
+    #return convertToDictionary(example_response)
 
-    #return generate_quiz(response) # get response from ai
+    return generate_quiz(prompt, question_num) # get response from ai
 
 # Running app
 if __name__ == '__main__':
